@@ -1,0 +1,167 @@
+body
+{
+margin: 0;
+padding: 0;
+}
+header
+{
+    width: 100%;
+    height: 90px;
+    background-color: rgb(190, 83, 101);
+    box-shadow: 0px 0px 12px rgb(160, 82, 82);   
+    
+}
+header button
+{
+    border-radius: 7px;
+    color:white;
+    width: 140px;
+    padding: 7px;
+    margin-top: 25px;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 16px;
+    box-shadow: 0px 0px 5px whitesmoke;
+    font-family: 'Dancing Script' , cursive;
+    transition: 0.4s;
+    
+}
+header button:hover
+{
+    box-shadow: 0px 0px 15px rgb(112, 110, 110);
+}
+
+header img
+{
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    float: left;
+    margin-top: 5px;
+    margin-left: 7px;
+
+}
+a
+{
+    color: white;
+    text-decoration: none;
+}
+aside
+{
+  width: 12%;
+  height: 240px;
+  
+  float: right;
+  margin-top: 4px;
+}
+aside button
+{
+    border-radius: 7px;
+    color :white;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-family: 'Dancing Script' , cursive;
+    background-color: rgb(190, 83, 101);
+    border: none;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    outline: none;
+    
+   
+}
+aside button:hover
+{
+    color :black;
+    background-color: white;
+    transition: 0.5s;
+}
+main
+{
+    width: 88%;
+    height: 240px;
+   
+    margin-top: -4px;  
+}
+main h2
+{
+    font-size: 35px;
+    font-family: 'Dancing Script' , cursive;
+   
+}
+main p
+{
+    font-size: 20px;
+    font-family: 'Dancing Script' , cursive;
+}
+#d1 div
+{
+    margin-top: 35px;
+    width: 250px;
+    height: 450px;
+    margin-left: 60px;
+    font-size: 18px;
+    font-family: 'Dancing Script' , cursive;
+    float: left;
+    
+
+}
+
+
+#d1 div h3
+{
+    font-size: 22px;
+    margin-bottom: 7px;
+    text-align: center;
+    color: #3d3d3d;
+    font-family: none;
+}
+
+#d1 div strong
+{
+
+    
+    color: rgb(83, 81, 81);
+    font-size: 18px;
+    text-align: left;
+    font-family: none;
+
+}
+#d1 div span
+{
+    font-size: 20;
+    font-family: none;
+    color: #3d3d3d;
+    font: bolder;
+}
+#d1 div button
+{
+    margin-top: 12px;
+    border-radius: 7px;
+    color :white;
+    width: 50%;
+    height: 40px;
+    font-size: 18px;
+    font-family: 'Dancing Script' , cursive;
+    background-color: rgb(190, 83, 101);
+    border: none;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    outline: none;
+    font-family: none;
+    
+}
+#d1 div button:hover
+{
+    color :white;
+    background-color: rgb(139, 65, 77);
+    transition: 0.5s;
+}
+#d1 img
+{
+    width: 200;
+    height: 200;
+    border-radius: 25px;
+
+}

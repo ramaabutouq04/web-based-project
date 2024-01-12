@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test.css">
+    <title>Your Project</title>
+    <style>
+        .error-text {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="pinklogo.jpg" alt="Logo">
+        </div>
+        <center>
+            <div>
+                <a href="index.html"><button>Home</button>
+                <a href="Login&Sign up Page.html"><button>Sign up</button></a>
+                <a href="Login&Sign up Page.html"><button>Login</button></a>
+                <a href="About Us.html"><button>About Us</button></a>
+                <a href="mailto:rama_abutouq@icloud.com"><button>Contact Us</button></a>
+                <a href="Reviews.html"><button>Reviews</button></a>
+                <a href="Sitemap.html"><button>Sitemap</button></a>
+            </div>
+        </center>
+    </header>
+    <br>
+   <center> <div id="datetime"></div></center>
+   <center><span id="currentTime"></span></center>
+
+    <main>
+        <section>
+            <h2>Please Fill The Shopping Form </h2>
+            <form action="#" method="post" id="customForm">
+                <label for="productName"> Name:</label>
+                <input type="text" id="productName" name="productName" required oninput="clearField('productNameError')" onfocus="clearField('productNameError')">
+                <span id="productNameError" class="error-text"></span>
+
+                <label for="contactInfo">Contact Information:</label>
+                <input type="text" id="contactInfo" name="contactInfo" required oninput="clearField('contactInfoError')" onfocus="clearField('contactInfoError')">
+                <span id="contactInfoError" class="error-text"></span>
+
+                <label for="productPrice">Product Price:</label>
+                <input type="number" id="productPrice" name="productPrice" required oninput="clearField('productPriceError')" onfocus="clearField('productPriceError')">
+                <span id="productPriceError" class="error-text"></span>
+
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" required oninput="clearField('quantityError')" onfocus="clearField('quantityError')">
+                <span id="quantityError" class="error-text"></span>
+
+                <label>Payment Method : </label><br>
+                <label for="cash">Cash on Delivery</label>
+                <input type="radio" id="cash" name="paymentMethod" value="cash" required><br>
+                <label for="creditCard">Credit Card</label>
+                <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" required>
+                <span id="paymentMethodError" class="error-text"></span><br><br><br>
+
+                <label>Selected Categories:</label><br>
+                <label for="bodyCare">Body Care</label>
+                <input type="checkbox" id="bodyCare" name="selectedCategories" value="bodyCare"><br>
+    
+                <label for="hair">Hair</label>
+                <input type="checkbox" id="hair" name="selectedCategories" value="hair"><br>
+    
+                <label for="faceCare">Face Care</label>
+                <input type="checkbox" id="faceCare" name="selectedCategories" value="faceCare"><br>
+    
+                <label for="makeup">Makeup</label>
+                <input type="checkbox" id="makeup" name="selectedCategories" value="makeup"><br>
+    
+                <label for="perfumes">Perfumes</label>
+                <input type="checkbox" id="perfumes" name="selectedCategories" value="perfumes"><br>
+    
+                <label for="accessories">Accessories</label>
+                <input type="checkbox" id="accessories" name="selectedCategories" value="accessories"><br>
+                <span id="purchaseCategoryError" class="error-text"></span>
+
+                <button id="sub" type="button" onclick="validateAndCalculate()">Calculate Amount</button> <br><br>
+
+                <div id="totalCostContainer">
+                    <label></label>
+                    <span id="totalCost"></span>
+                </div>
+
+                <textarea id="report" rows="10" cols="50" readonly style="display: none;"></textarea>
+            </form>
+        </section>
+    </main>
+
+   
+
+    <script>
+        function validateAndCalculate() {
+            
+            clearField('productNameError');
+            clearField('contactInfoError');
+            clearField('productPriceError');
+            clearField('quantityError');
+            clearField('paymentMethodError');
+            clearField('purchaseCategoryError');
+
+            
+            const productName = document.getElementById('productName').value.trim();
+            if (!productName) {
+                document.getElementById('productNameError').textContent = 'Your Name is required';
+                return;
+            }
+
+            
+            const contactInfo = document.getElementById('contactInfo').value.trim();
+            if (!contactInfo) {
+                document.getElementById('contactInfoError').textContent = 'Contact Information is required';
+                return;
+            }
+            
+            const productPrice = parseFloat(document.getElementById('productPrice').value);
+            if (isNaN(productPrice) || productPrice <= 0) {
+                document.getElementById('productPriceError').textContent = 'Product Price must be a positive number';
+                return;
+            }
+
+            const quantity = parseInt(document.getElementById('quantity').value, 10);
+            if (isNaN(quantity) || quantity <= 0) {
+                document.getElementById('quantityError').textContent = 'Quantity must be a positive integer';
+                return;
+            }
+
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+            if (!paymentMethod) {
+                document.getElementById('paymentMethodError').textContent = 'Please select a Payment Method';
+                return;
+            }
+
+            const selectedCategories = document.querySelectorAll('input[name="selectedCategories"]:checked');
+            if (selectedCategories.length === 0) {
+                document.getElementById('purchaseCategoryError').textContent = 'Please select at least one Purchase Category';
+                return;
+            }
+
+            calculateTotalCost();
+
+            displayReport(productName, contactInfo, productPrice, quantity, paymentMethod.value, selectedCategories);
+        }
+
+        function calculateTotalCost() {
+            const productPrice = parseFloat(document.getElementById('productPrice').value);
+            const quantity = parseInt(document.getElementById('quantity').value, 10);
+            const totalCostContainer = document.getElementById('totalCostContainer');
+            const totalCost = document.getElementById('totalCost');
+
+            totalCostContainer.style.display = 'none';
+
+            const calculatedTotalCost = productPrice * quantity;
+
+            totalCost.textContent = 'Total Cost: ' + calculatedTotalCost.toFixed(2);
+            totalCostContainer.style.display = 'block';        }
+
+        function displayReport(productName, contactInfo, productPrice, quantity, paymentMethod, purchaseCategories) {
+            const reportTextarea = document.getElementById('report');
+            const reportText = `
+Your Name: ${productName}
+Contact Information: ${contactInfo}
+Product Price: ${productPrice.toFixed(2)}
+Quantity: ${quantity}
+Payment Method: ${paymentMethod}
+Purchase Categories: ${Array.from(purchaseCategories).map(category => category.value).join(', ')}
+Total Cost: ${(productPrice * quantity).toFixed(2)}
+`;
+
+            reportTextarea.value = reportText;
+            reportTextarea.style.display = 'block';
+        }
+
+        function clearField(errorFieldId) {
+            const errorField = document.getElementById(errorFieldId);
+            errorField.textContent = '';
+        }
+
+        function updateDateTime() {
+            const datetimeElement = document.getElementById('datetime');
+            const currentDate = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+            const formattedDate = currentDate.toLocaleDateString('en-US', options);
+            
+            datetimeElement.textContent = formattedDate;
+        }
+
+    
+        setInterval(updateDateTime, 1000);
+
+        
+        updateDateTime();
+    </script>
+</body>
+</html>
+
